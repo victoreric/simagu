@@ -69,6 +69,7 @@ if(isset($_POST['pilih'])){
     $totalKegiatanTidakRea=0;
     $totalPersenRea=0;
     $totalPersenTidakRea=0;
+    $totalJumlahCapaian=0;
 
     // mendapatkan nama subseksi
     $query="SELECT * FROM subseksi WHERE kd_seksi='$kd_seksi'";
@@ -109,6 +110,8 @@ if(isset($_POST['pilih'])){
         $sql4=mysqli_query($conn,$query4);
         $data4=mysqli_fetch_array($sql4);
         $jumlahCapaian=$data4['capaian'];
+        $totalJumlahCapaian+=$jumlahCapaian;
+        
 
         // rumus Persentase Realisasi kegiatan(%) adalah (total jumlah capaian subseski/(jumlah kegiatan*2))*100
         // persentase realisasi
@@ -128,31 +131,41 @@ if(isset($_POST['pilih'])){
           $persentaseTidakReaKeg='0';
         }
 
+        // rumus Total persentase realisasi kegiatan
+        // totalPersentaseRealisasi=((totalJumlahCapaianSubSeksi/totalJumlahKegiatanSubSeksi)/2)*100
+        if($totalJumlahCapaian!=0 AND $totalKegiatan!=0){
+          $totalPersentaseRealisasi=round((($totalJumlahCapaian/$totalKegiatan)/2)*100,2);
+        }else{
+          $totalPersentaseRealisasi='0';
+        }
+
+        // rumus Total persentase TIDAK realisasi kegiatan
+        $totalPersentaseTidakRealisasi=100-$totalPersentaseRealisasi;
+
         ?>
-        <td><?php echo $jumlah ?></td>
+      <td><?php echo $jumlah ?></td>
       <td><?php echo $jumlahRealisasi ?></td>
       <td><?php echo $persentaseReaKeg?></td>
       <td><?php echo $jumlahTidakRealisasi ?></td></td>
       <td><?php echo $persentaseTidakReaKeg ?></td></td>
     </tr>
-    <?php } ?>
-    <tr>
+    <?php 
+    
+  } ?>
+    <tr class="bg-secondary">
       <td colspan="2" class='text-center'>Jumlah</td>
       <td><?php echo $totalKegiatan ?></td>
       <td><?php echo $totalKegiatanRea ?></td>
-      <td><?php echo '-' ?></td>
+      <td><?php echo $totalPersentaseRealisasi ?></td>
       <td><?php echo $totalKegiatanTidakRea ?></td>
-      <td><?php echo '-' ?></td>
+      <td><?php echo $totalPersentaseTidakRealisasi ?></td>
     </tr>
     </tbody>
     </table>
   </div>
 </div>
 
-
-<?php }
-?>
-
+<?php } ?>
 </div>
 
 <?php

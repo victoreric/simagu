@@ -115,7 +115,7 @@ if(isset($_POST['pilih'])){
     </tr>
     <?php } ?>
     <tr class="text-center bg-secondary">
-      <td colspan="10" class='text-center'>Jumlah Capaian Realisasi Sub Seksi</td>
+      <td colspan="10" class='text-center'>Persentase Capaian Realisasi Sub Seksi (%)</td>
       <?php
         // mendaptkan jumlah kegiatan setiap subseksi
         $query2="SELECT count(*) as jum FROM kegiatan WHERE kd_subseksi='$kd_subseksi'";
@@ -147,7 +147,6 @@ if(isset($_POST['pilih'])){
     </table>
   </div>
 </div>
-
 
 <?php }
 ?>
