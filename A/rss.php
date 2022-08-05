@@ -114,7 +114,7 @@ if(isset($_POST['pilih'])){
       <td><?php echo $hasil['realisasi']; ?></td>
     </tr>
     <?php } ?>
-    <tr class="text-center">
+    <tr class="text-center bg-secondary">
       <td colspan="10" class='text-center'>Jumlah Capaian Realisasi Sub Seksi</td>
       <?php
         // mendaptkan jumlah kegiatan setiap subseksi
