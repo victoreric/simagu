@@ -9,50 +9,49 @@ include '../link.php';
         <li class='breadcrumb-item'><a href='#'>Rekapitulasi</a></li>
         <li class='breadcrumb-item'><a href='#'>Capaian Realisasi Sub Seksi</a></li>
         </ul>
-    </div>
+</div>
 
 <div class="container-fluid">
+  <h3 class='text-center'>Capaian Realisasi Sub Seksi</h3>
+  <form action="" method="POST">
+      <label">Pilih Seksi : </label>
+      <select class="form-control"  id="seksi" name="seksi" required>
+          <option value=""> --- Silahkan Pilih Seksi ---</option>
+              <?php
+              $query = mysqli_query($conn, "SELECT * FROM seksi ORDER BY kd_seksi");
+              while ($row = mysqli_fetch_array($query)) {
+              ?>
+          <option value="<?php echo $row['kd_seksi']; ?>"> <?php echo $row['nama_seksi']; ?> </option>
+          <?php } ?>
+      </select>
 
-    <h3 class='text-center'>Capaian Realisasi Sub Seksi</h3>
+      <label for="subseksi" class="mt-3">Pilih Sub Seksi :</label>
+      <select class="form-control" id="subseksi" name="subseksi" required>
+          <option value="">--- Silahkan Pilih Sub Seksi ---</option>
+          <?php
+          $query = mysqli_query($conn, "SELECT *, seksi.kd_seksi, seksi.nama_seksi
+          FROM subseksi 
+          INNER JOIN seksi ON subseksi.kd_seksi = seksi.kd_seksi ORDER BY kd_subseksi");
+          while ($row = mysqli_fetch_array($query)) {
+          ?>
+              <option id="subseksi" class="<?php echo $row['kd_seksi']; ?>" value="<?php echo $row['kd_subseksi']; ?>">
+                  <?php echo $row['nama_subseksi']; ?>
+              </option>
+      <?php } ?>
+      </select>
 
-    <form action="" method="POST">
+      <button type="submit" class="btn btn-primary mt-2 mb-5" name='pilih'>PILIH</button>
+      </form>
 
-    <label for="kd_seksi">Pilih Seksi :</label>
-    <select class="form-control" name="kd_seksi" id="kd_seksi" required>
-    <option value="">--Pilih Seksi--</option>
-        <?php
-            $query="SELECT * FROM seksi ORDER BY kd_seksi";
-            $sql=mysqli_query($conn,$query);
-            while($data=mysqli_fetch_array($sql)){
-        ?>
-    <option value="<?php echo $data['kd_seksi'] ?>"><?php echo $data['nama_seksi'] ?></option>
-    <?php } ?>
-    </select>
-
-    <label for="kd_seksi" class="mt-4">Pilih Sub Seksi :</label>
-    <select class="form-control" name="kd_subseksi" id="kd_subseksi" required>
-    <option value="">--Pilih Sub Seksi--</option>
-        <?php
-            $query="SELECT * FROM subseksi ORDER BY kd_subseksi";
-            $sql=mysqli_query($conn,$query);
-            while($data=mysqli_fetch_array($sql)){
-        ?>
-    <option value="<?php echo $data['kd_subseksi'] ?>"><?php echo $data['nama_subseksi'] ?></option>
-    <?php } ?>
-    </select>
-
-    <button type="submit" class="btn btn-primary mt-2 mb-5" name='pilih'>PILIH</button>
-    </form>
-
-<!-- process -->
 <?php 
+// simpanProcess
 if(isset($_POST['pilih'])){
-    $kd_seksi=$_POST['kd_seksi'];
+    $kd_seksi=$_POST['seksi'];
     $query1="SELECT * FROM seksi WHERE kd_seksi='$kd_seksi'";
     $sql1=mysqli_query($conn,$query1);
     $hasil1=mysqli_fetch_array($sql1);
 
-    $kd_subseksi=$_POST['kd_subseksi']; 
+    $kd_subseksi=$_POST['subseksi']; 
     $query="SELECT * FROM subseksi WHERE kd_subseksi='$kd_subseksi'";
     $sql=mysqli_query($conn,$query);
     $hasil=mysqli_fetch_array($sql);
@@ -70,10 +69,8 @@ if(isset($_POST['pilih'])){
     <thead class="thead-dark text-center">
         <tr>
         <th scope="col" rowspan='2'  class="align-middle" >No.</th>
-        <!-- <th scope="col" rowspan='2'  class="align-middle">SUBSEKSI</th> -->
         <th scope="col" rowspan='2'  class="align-middle">KEGIATAN</th>
         <th scope="col" rowspan='2'  class="align-middle">INDIKATOR</th>
-
         <th scope="col" colspan='5'  class="align-middle">CAPAIAN</th>
         <th scope="col" rowspan='2' class="align-middle">% Capaian</th>
         <th scope="col" rowspan='2' class="align-middle">Kategori</th>
@@ -98,10 +95,8 @@ if(isset($_POST['pilih'])){
     ?>
 
     <tr class="text-center">
-        <th scope="row"><?php echo $no++; ?></th>
-        <!-- <td class="text-justify"><?php echo $hasil['nama_subseksi'];?></td> -->
-        <td class="text-justify"><?php echo $hasil['kegiatan'] ?></td>
-        
+      <th scope="row"><?php echo $no++; ?></th>
+      <td class="text-justify"><?php echo $hasil['kegiatan'] ?></td>
       <td class="text-justify"><?php echo $hasil['indikator']  ?></td>
       <td><?php echo $hasil['capaian_keg']  ?></td>
       <td><?php echo $hasil['capaian_biaya']  ?></td>
@@ -117,7 +112,7 @@ if(isset($_POST['pilih'])){
     <tr class="text-center bg-secondary">
       <td colspan="10" class='text-center'>Persentase Capaian Realisasi Sub Seksi (%)</td>
       <?php
-        // mendaptkan jumlah kegiatan setiap subseksi
+        // mendapatkan jumlah kegiatan setiap subseksi
         $query2="SELECT count(*) as jum FROM kegiatan WHERE kd_seksi='$kd_seksi' AND kd_subseksi='$kd_subseksi'";
         $sql2=mysqli_query($conn,$query2);
         $data2=mysqli_fetch_array($sql2);
@@ -136,7 +131,6 @@ if(isset($_POST['pilih'])){
           $cari=$jumlah*2;
           $persentaseReaKeg1=($jumlahCapaian/$cari)*100;
           $persentaseReaKeg=Round($persentaseReaKeg1,2);
-          
         }else{
           $persentaseReaKeg='0';
         }
@@ -153,6 +147,12 @@ if(isset($_POST['pilih'])){
 
 </div>
 
+<!-- scriptForComboBoxBertingkat -->
+<script src="../vendor/jquery/jquery-1.10.2.min.js"></script>
+<script src="../vendor/jquery/jquery.chained.min.js"></script>
+<script>
+    $("#subseksi").chained("#seksi");
+</script>
 <?php
 include '../footer.php';
 ?>
