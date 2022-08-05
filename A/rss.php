@@ -92,7 +92,7 @@ if(isset($_POST['pilih'])){
     $no=1;
    
     // mendapatkan nama kegiatan setiap sub seksi
-    $query="SELECT * FROM kegiatan WHERE kd_subseksi='$kd_subseksi'";
+    $query="SELECT * FROM kegiatan WHERE kd_seksi='$kd_seksi' AND kd_subseksi='$kd_subseksi'";
     $sql = mysqli_query($conn,$query);
     while($hasil=mysqli_fetch_array($sql)){
     ?>
@@ -118,14 +118,14 @@ if(isset($_POST['pilih'])){
       <td colspan="10" class='text-center'>Persentase Capaian Realisasi Sub Seksi (%)</td>
       <?php
         // mendaptkan jumlah kegiatan setiap subseksi
-        $query2="SELECT count(*) as jum FROM kegiatan WHERE kd_subseksi='$kd_subseksi'";
+        $query2="SELECT count(*) as jum FROM kegiatan WHERE kd_seksi='$kd_seksi' AND kd_subseksi='$kd_subseksi'";
         $sql2=mysqli_query($conn,$query2);
         $data2=mysqli_fetch_array($sql2);
         $jumlah=$data2['jum'];
         // $totalKegiatan+=$jumlah;
 
         // mendapatkan jumlah nilai capaian subseksi
-        $query4="SELECT SUM(nilai_capaian_subbidang) AS capaian FROM kegiatan WHERE kd_subseksi='$kd_subseksi'";
+        $query4="SELECT SUM(nilai_capaian_subbidang) AS capaian FROM kegiatan WHERE kd_seksi='$kd_seksi' AND kd_subseksi='$kd_subseksi'";
         $sql4=mysqli_query($conn,$query4);
         $data4=mysqli_fetch_array($sql4);
         $jumlahCapaian=$data4['capaian'];
