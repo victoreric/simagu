@@ -81,7 +81,8 @@
             </div>
             <nav class="login-card-footer-nav mt-5">
                 <a href="">Terms of use |</a>
-                <a href="">Privacy policy</a>
+                <a href="">Privacy policy | </a>
+                <a href="https://victoreric.info">Created by VictorEric</a>
             </nav>
                 
     </div>

@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white mt-5">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-               <span>Copyright &copy; ВЭП 2022</span>
+               <span>Copyright &copy; <a href="https://victoreric.info"> ВЭП </a> 2022</span>
             </div>
         </div>
     </footer>
