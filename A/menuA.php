@@ -70,7 +70,7 @@ if($level=='1'){
 
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-
+          
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index">
                     <div class="sidebar-brand-icon">
@@ -149,8 +149,33 @@ if($level=='1'){
                     </div>
                 </li>
 
+                 <!-- Divider -->
+                 <hr class="sidebar-divider">
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGrafik"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Grafik</span>
+                    </a>
+                    <div id="collapseGrafik" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <!-- <h6 class="collapse-header">Statistik kegiatan:</h6> -->
+                            <!-- <a class="collapse-item" href="#">Jemaat</a> -->
+                            <a class="collapse-item" href="grafik">Seksi</a>
+                            <a class="collapse-item" href="grafik2">Sub Seksi</a>
+                            <!-- <a class="collapse-item" href="rk">Kegiatan</a> -->
+                        </div>
+                    </div>
+                </li>
+
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+
+
+
+
+
 
                 <!-- Heading -->
                 <!-- <div class="sidebar-heading">
@@ -186,9 +211,9 @@ if($level=='1'){
                             echo '<br>';
                             $tgl=date('Y-m-d');
                             echo tanggal_indo($tgl);
-                            echo '<br> <br>';
+                            echo '<br>';
                         ?>
-                            <table align=center style="border:1px solid black" bgcolor="blue" cellpadding="7">
+                            <table align=center style="border:0px solid black" bgcolor="" cellpadding="7">
                                 <tr>
                                     <td><div id="tanggalku"></div> </td>
                                 </tr>
@@ -203,6 +228,7 @@ if($level=='1'){
                     <!-- Sidebar Toggler (Sidebar) -->
                     <div class="text-center d-none d-md-inline">
                         <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                       
                     </div>
                 <!-- endMyMenu -->
             </ul>
@@ -244,7 +270,7 @@ if($level=='1'){
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-white-500 small"><?php echo $_SESSION['nama'];  ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-white-500"><?php echo $_SESSION['nama'];  ?></span>
                                    
                                     <img class='img-profile rounded-circle' src='../vendor/img/undraw_profile.svg'>
                                     

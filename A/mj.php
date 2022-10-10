@@ -124,7 +124,7 @@ function view($conn){ ?>
   <div class="card-body table-responsive">
   <!-- <a href="" class="btn-sm btn-info far fa-file"> Tambah data </a> -->
   <!-- <p></p> -->
-  <a href="mj?aksi=add" class="btn btn-success mb-2 fa fa-plus-circle" role="button"> </a>
+  <a href="mj?aksi=add" class="btn btn-info mb-2 fa fa-plus-circle" role="button"> </a>
   <table id="example1" class="table table-bordered table-hover table-responsive-justify">
 		<thead>
 			<tr class="bg-dark text-center">
@@ -151,7 +151,7 @@ function view($conn){ ?>
 				<td><?php echo $hasil['klasis']; ?></td>
 				<td><?php echo $hasil['alamat'];  ?></td>
 				<td><?php echo $hasil['ketua_MJ'];  ?></td>
-				<td class='text-center' > <a href='mj?aksi=edit&id= <?php echo $hasil['id_jemaat'] ;?> ' class='btn-sm btn-warning fas fa-edit' > </a>
+				<td class='text-center' > <a href='mj?aksi=edit&id= <?php echo $hasil['id_jemaat'] ;?> ' class='btn-sm btn-success fas fa-edit' > </a>
      
            		<a href="mj?aksi=delete&id=<?php echo $hasil['id_jemaat'] ;?>" class="btn-sm btn-danger fas fa-trash-alt mt-2" onclick="javascript:return confirm('Anda Yakin menghapus data ini?')" >  </a> 
 				</td>

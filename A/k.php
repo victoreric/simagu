@@ -10,7 +10,7 @@ include '../link.php'
   </ul>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid small">
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary text-center">Kegiatan-Kegiatan</h6>
@@ -83,7 +83,7 @@ include '../link.php'
                     <td><?php echo $hasil['nilai_capaian_subbidang']; ?></td>
                     <td><?php echo $hasil['realisasi']; ?></td>
 
-                    <td><a href='ke?id=<?php echo $hasil['id_kegiatan'] ?>' class='btn-sm btn-warning fas fa-edit'> </a>
+                    <td><a href='ke?id=<?php echo $hasil['id_kegiatan'] ?>' class='btn-sm btn-success fas fa-edit'> </a>
                         
                     <a href="k?id=<?php echo $hasil['id_kegiatan']; ?>" onclick="javascript:return confirm('Anda Yakin untuk menghapus data ini?')" class="btn-sm btn-danger fas fa-trash-alt mt-1"> </a>
                         
@@ -94,12 +94,11 @@ include '../link.php'
             </div>
 
             <!-- inputdata -->
-            <div class="tab-pane fade " id="nav-input" role="tabpanel" aria-labelledby="nav-input-tab">
+            <div class="tab-pane fade" id="nav-input" role="tabpanel" aria-labelledby="nav-input-tab">
             <form method="POST" action="" enctype="multipart/form-data">
                 <div class="form-group row">
                     <label for="id_jemaat" class="col-sm-2 col-form-label">Jemaat</label>
                     <div class="col-sm-10">
-                    <!-- <input type="text" class="form-control" id="idjemaat" name="idjemaat"> -->
                     <select name="kd_jemaat" id='kd_jemaat' class="form-control" required>
                         <?php      
                             $queri="SELECT * FROM jemaat";
@@ -108,36 +107,43 @@ include '../link.php'
                             echo " <option value='".$res['kd_jemaat'].  "' >".$res['nama_jemaat']. "</option>     ";}
                         ?>     
                     </select>
-                    
                     </div>
                 </div>
+
                 <div class="form-group row">
-                    <label for="kd_seksi" class="col-sm-2 col-form-label">Seksi</label>
+                    <label for="seksi" class="col-sm-2 col-form-label">Seksi</label>
                     <div class="col-sm-10">
-                    <!-- <input type="text" class="form-control" id="idseksi" name="idseksi"> -->
-                    <select name="kd_seksi" id='kd_seksi' class="form-control" required>
+                    <select name="seksi" id='seksi' class="form-control" required>
                         <option value="">--Pilih Seksi--</option>
                         <?php      
-                            $queri="SELECT * FROM seksi";
+                            $queri="SELECT * FROM seksi ORDER BY kd_seksi";
                             $sql=mysqli_query($conn,$queri);
                             while($res=mysqli_fetch_array($sql)){
-                            echo " <option value='".$res['kd_seksi']."'>".$res['nama_seksi']."</option>";}
+                            echo " <option value='".$res['kd_seksi']."'>".$res['nama_seksi']."</option>";   
+                            }
                         ?>     
                     </select>
                     </div>
                 </div>
+                
+                
                 <div class="form-group row">
-                    <label for="kd_subseksi" class="col-sm-2 col-form-label">Sub Seksi</label>
+                    <label for="subseksi" class="col-sm-2 col-form-label">Sub Seksi</label>
                     <div class="col-sm-10">
-                    <!-- <input type="text" class="form-control" id="idsubseksi" name="idsubseksi"> -->
-                    <select name="kd_subseksi" id='kd_subseksi' class="form-control" required>
+                    <select name="subseksi" id='subseksi' class="form-control" required>
                         <option value="">--Pilih Sub Seksi--</option>
                         <?php      
-                            $queri="SELECT * FROM subseksi";
+                            $queri="SELECT *, seksi.kd_seksi, seksi.nama_seksi
+                            FROM subseksi 
+                            INNER JOIN seksi ON subseksi.kd_seksi = seksi.kd_seksi ORDER BY kd_subseksi";
                             $sql=mysqli_query($conn,$queri);
                             while($res=mysqli_fetch_array($sql)){
-                            echo " <option value='".$res['kd_subseksi']."'>".$res['nama_subseksi']."</option>";}
-                        ?>     
+                        ?>    
+                            <option id='subseksi' class="<?php echo $res['kd_seksi'] ?>" value="<?php echo $res['kd_subseksi'] ?>">
+                            
+                            <?php echo $res['nama_subseksi']; ?>
+                        </option>";
+                        <?php } ?>     
                     </select>
                     </div>
                 </div>
@@ -168,15 +174,24 @@ include '../link.php'
                 <div class="form-group row">
                     <label for="capaian_keg" class="col-sm-2 col-form-label">Capaian Kegiatan</label>
                     <div class="col-sm-10">
-                    <select name="capaian_keg" class="form-control" id='capaian_keg' required>
-                    <option value=''> --Pilih capaian-- </option>
-                        <option> Sesuai Target</option>
-                        <option> Lebih Target</option>
-                        <option> Kurang Target</option>
-                        <option> Nihil Target</option>
-                    </select>
+                        <select name="capaian_keg" class="form-control" id='capaian_keg' required>
+                        <option value=''> --Pilih capaian-- </option>
+                            <option> Sesuai Target</option>
+                            <option> Lebih Target</option>
+                            <option> Kurang Target</option>
+                            <option> Nihil Target</option>
+                        </select>
+                        <br>
+                        <div class="form-group row">
+                            <label for="ket_capaian_keg" class="col-sm-2 col-form-label">Keterangan/ Penjelasan:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="ket_capaian_keg" name="ket_capaian_keg" rows="3" required></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
                 <div class="form-group row">
                     <label for="capaian_biaya" class="col-sm-2 col-form-label">Capaian Biaya</label>
                     <div class="col-sm-10">
@@ -187,8 +202,16 @@ include '../link.php'
                         <option> Kurang Target</option>
                         <option> Nihil Target</option>
                     </select>
+                    <br>
+                        <div class="form-group row">
+                            <label for="ket_capaian_biaya" class="col-sm-2 col-form-label">Keterangan/ Penjelasan:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="ket_capaian_biaya" name="ket_capaian_biaya" rows="3" required></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label for="capaian_sasaran" class="col-sm-2 col-form-label">Capaian Sasaran</label>
                     <div class="col-sm-10">
@@ -199,8 +222,16 @@ include '../link.php'
                         <option> Kurang Target</option>
                         <option> Nihil Target</option>
                     </select>
+                    <br>
+                        <div class="form-group row">
+                            <label for="ket_capaian_sasaran" class="col-sm-2 col-form-label">Keterangan/ Penjelasan:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="ket_capaian_sasaran" name="ket_capaian_sasaran" rows="3" required></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label for="capaian_waktu" class="col-sm-2 col-form-label">Capaian Waktu</label>
                     <div class="col-sm-10">
@@ -211,8 +242,16 @@ include '../link.php'
                         <option> Kurang Target</option>
                         <option> Nihil Target</option>
                     </select>
+                    <br>
+                        <div class="form-group row">
+                            <label for="ket_capaian_waktu" class="col-sm-2 col-form-label">Keterangan/ Penjelasan:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="ket_capaian_waktu" name="ket_capaian_waktu" rows="3" required></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label for="capaian_tempat" class="col-sm-2 col-form-label">Capaian Tempat</label>
                     <div class="col-sm-10">
@@ -223,6 +262,13 @@ include '../link.php'
                         <option> Kurang Target</option>
                         <option> Nihil Target</option>
                     </select>
+                   <br>
+                        <div class="form-group row">
+                            <label for="ket_capaian_tempat" class="col-sm-2 col-form-label">Keterangan/ Penjelasan:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="ket_capaian_tempat" name="ket_capaian_tempat" rows="3" required></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -248,17 +294,23 @@ include '../link.php'
 // simpandata
 if(isset($_POST['simpan'])){
     $kd_jemaat=$_POST['kd_jemaat']; 
-    $kd_seksi=$_POST['kd_seksi']; 
-    $kd_subseksi=$_POST['kd_subseksi'];
+    $seksi=$_POST['seksi']; 
+    $subseksi=$_POST['subseksi'];
     $nomor_kegiatan=$_POST['nomor_kegiatan'];
     $periode=$_POST['periode']; 
     $kegiatan=$_POST['kegiatan'];
     $indikator=$_POST['indikator'];
     $capaian_keg=$_POST['capaian_keg'];
+    $ket_capaian_keg=$_POST['ket_capaian_keg'];
+
     $capaian_biaya=$_POST['capaian_biaya'];
+    $ket_capaian_biaya=$_POST['ket_capaian_biaya'];
     $capaian_sasaran=$_POST['capaian_sasaran'];
+    $ket_capaian_sasaran=$_POST['ket_capaian_sasaran'];
     $capaian_waktu=$_POST['capaian_waktu'];
+    $ket_capaian_waktu=$_POST['ket_capaian_waktu'];
     $capaian_tempat=$_POST['capaian_tempat'];
+    $ket_capaian_tempat=$_POST['ket_capaian_tempat'];
 
     if($capaian_keg=='Sesuai Target'){
         $nilai_capaian_keg='2';
@@ -316,7 +368,7 @@ if(isset($_POST['simpan'])){
         $nilai_kategori='Lebih Target';
     }elseif($nilai_capaian==100){
         $nilai_kategori='Sesuai Target';
-    }elseif($nilai_capaian==99){
+    }elseif($nilai_capaian>=1){
         $nilai_kategori='Kurang Target';
     }else{
         $nilai_kategori='Nihil Target';
@@ -333,7 +385,6 @@ if(isset($_POST['simpan'])){
         $nilai_capaian_subbidang='0';
     }
 
-
     if($nilai_kategori=='Sesuai Target'){
         $realisasi='Realisasi';
     }elseif($nilai_kategori=='Lebih Target'){
@@ -344,7 +395,7 @@ if(isset($_POST['simpan'])){
         $realisasi='Tidak Realisasi';
     }
     
-    $query="INSERT INTO kegiatan(kd_jemaat, kd_seksi, kd_subseksi, nomor_kegiatan, periode, kegiatan, indikator, capaian_keg, capaian_biaya, capaian_sasaran, capaian_waktu, capaian_tempat, nilai_capaian_keg, nilai_biaya, nilai_sasaran, nilai_waktu, nilai_tempat, nilai_capaian, nilai_kategori, nilai_capaian_subbidang, realisasi) VALUES ('$kd_jemaat','$kd_seksi','$kd_subseksi','$nomor_kegiatan','$periode','$kegiatan','$indikator','$capaian_keg','$capaian_biaya','$capaian_sasaran','$capaian_waktu','$capaian_tempat','$nilai_capaian_keg','$nilai_biaya','$nilai_sasaran','$nilai_waktu','$nilai_tempat','$nilai_capaian','$nilai_kategori','$nilai_capaian_subbidang','$realisasi')";
+    $query="INSERT INTO kegiatan (kd_jemaat, kd_seksi, kd_subseksi, nomor_kegiatan, periode, kegiatan, indikator, capaian_keg, ket_capaian_keg, capaian_biaya, ket_capaian_biaya, capaian_sasaran, ket_capaian_sasaran, capaian_waktu, ket_capaian_waktu, capaian_tempat, ket_capaian_tempat, nilai_capaian_keg, nilai_biaya, nilai_sasaran, nilai_waktu, nilai_tempat, nilai_capaian, nilai_kategori, nilai_capaian_subbidang, realisasi) VALUES ('$kd_jemaat','$seksi','$subseksi','$nomor_kegiatan','$periode','$kegiatan','$indikator','$capaian_keg','$ket_capaian_keg','$capaian_biaya','$ket_capaian_biaya','$capaian_sasaran','$ket_capaian_sasaran','$capaian_waktu','$ket_capaian_waktu','$capaian_tempat','$ket_capaian_tempat','$nilai_capaian_keg','$nilai_biaya','$nilai_sasaran','$nilai_waktu','$nilai_tempat','$nilai_capaian','$nilai_kategori','$nilai_capaian_subbidang','$realisasi')";
       
     $sql=mysqli_query($conn,$query);
 
@@ -382,6 +433,13 @@ if(isset($_GET['id'])){
      });  
     });  
    </script> 
+
+<!-- scriptForComboBoxBertingkat -->
+<script src="../vendor/jquery/jquery-1.10.2.min.js"></script>
+<script src="../vendor/jquery/jquery.chained.min.js"></script>
+<script>
+    $("#subseksi").chained("#seksi");
+</script>
 
 <?php
 include '../footer.php';

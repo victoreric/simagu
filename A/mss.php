@@ -72,7 +72,7 @@ function view($conn){ ?>
                 <td><?php echo $hasil['kd_subseksi']; ?></td>
                 <td><?php echo $hasil['nama_subseksi']; ?></td>
 				<td><?php echo $hasil['ketua_subseksi'];  ?></td>
-				<td class='text-center' > <a href='mss?aksi=edit&id=<?php echo $hasil['id_subseksi'] ;?> ' class='btn-sm btn-warning fas fa-edit' > </a>
+				<td class='text-center' > <a href='mss?aksi=edit&id=<?php echo $hasil['id_subseksi'] ;?> ' class='btn-sm btn-success fas fa-edit' > </a>
      
            		<a href="mss?aksi=delete&id=<?php echo $hasil['id_subseksi'] ;?>" class="btn-sm btn-danger fas fa-trash-alt mt-2" onclick="javascript:return confirm('Anda Yakin menghapus data ini?')" >  </a> 
 				</td>

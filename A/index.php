@@ -1,5 +1,6 @@
 <?php
 include 'menuA.php';
+include '../link.php';
 ?>
 
 <!-- Main content starts -->
@@ -26,80 +27,156 @@ include 'menuA.php';
 
     <!-- Statistik  -->
 <div class="row">
-    <div class="col-xl-3 col-md-6 mb-3">
+    <div class="col-xl-4 col-md-6 mb-3">
         <div class="card border-left-secondary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                            Total Kegiatan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">10
+                            Total yang direncanakan</div>
+                            
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                            $query="SELECT * FROM kegiatan";
+                            $sql=mysqli_query($conn, $query);
+                            $jum=mysqli_num_rows($sql);
+                            echo $jum;?>
                         <small>kegiatan </small>
-                        <p class="text-xs bg-secondary text-white">yang direncanakan</p>
+                        <p class="text-xs bg-secondary text-white"></p>
                     </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fa fa-envelope-open-o fa-2x text-gray-30"></i>
+                        <i class="fa fa-list-alt fa-2x text-gray-30"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-3">
+    <div class="col-xl-4 col-md-6 mb-3">
         <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Realisasi Kegiatan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">4
+                            Total Realisasi </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                            $query="SELECT * FROM kegiatan WHERE realisasi='Realisasi'";
+                            $sql=mysqli_query($conn, $query);
+                            $jum=mysqli_num_rows($sql);
+                            echo $jum;
+                        ?>      
                         <small>Kegiatan</small>
-                        <p class="text-xs bg-primary text-white">Lebih Target</p>
+                        <p class="text-xs bg-primary text-white"></p>
                     </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fa fa-envelope-open fa-2x text-gray-30"></i>
+                        <i class="fa fa-th-large fa-2x" style="color: blue;"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-3">
-        <div class="card border-left-success shadow h-100 py-2">
+    <div class="col-xl-4 col-md-6 mb-3">
+        <div class="card border-left-danger shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Realisasi Kegiatan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">3
+                            Total Tidak Terealisasi</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                            $query="SELECT * FROM kegiatan WHERE realisasi='Tidak Realisasi'";
+                            $sql=mysqli_query($conn, $query);
+                            $jum=mysqli_num_rows($sql);
+                            echo $jum;
+                        ?>  
                         <small>Kegiatan</small>
-                        <p class="text-xs bg-success text-white">Sesuai Target</p>
+                        <p class="text-xs bg-danger text-white"></p>
                     </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fa fa-envelope-o fa-2x text-gray-30"></i>
+                        <i class="fa fa-arrows-alt fa-2x" style="color:red"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-3">
+    <div class="col-xl-4 col-md-6 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Kegiatan Tidak Terealisasi</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">3
+                            Realisasi Lebih Target</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                            $query="SELECT * FROM kegiatan WHERE realisasi='Realisasi' AND nilai_kategori='Lebih Target'";
+                            $sql=mysqli_query($conn, $query);
+                            $jum=mysqli_num_rows($sql);
+                            echo $jum;
+                        ?> 
                         <small>Kegiatan</small>
-                        <p class="text-xs bg-danger text-white">Nihil Target</p>
+                        <p class="text-xs bg-success text-white"></p>
                     </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fa fa-envelope fa-2x text-gray-30"></i>
+                        <i class="fa fa-hand-peace-o fa-2x" style="color:blue ;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6 mb-3">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Realisasi Sesuai Target</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                            $query="SELECT * FROM kegiatan WHERE realisasi='Realisasi' AND nilai_kategori='Sesuai Target'";
+                            $sql=mysqli_query($conn, $query);
+                            $jum=mysqli_num_rows($sql);
+                            echo $jum;
+                        ?> 
+                        <small>Kegiatan</small>
+                        <p class="text-xs bg-success text-white"></p>
+                    </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-thumbs-o-up fa-2x" style="color: green ;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6 mb-3">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Realisasi Kurang Target</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php
+                            $query="SELECT * FROM kegiatan WHERE realisasi='Realisasi' AND nilai_kategori='Kurang Target'";
+                            $sql=mysqli_query($conn, $query);
+                            $jum=mysqli_num_rows($sql);
+                            echo $jum;
+                        ?> 
+                        <small>Kegiatan</small>
+                        <p class="text-xs bg-success text-white"></p>
+                    </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fa fa-thumbs-down fa-2x"></i>
                     </div>
                 </div>
             </div>

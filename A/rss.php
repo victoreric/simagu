@@ -12,7 +12,7 @@ include '../link.php';
 </div>
 
 <div class="container-fluid">
-  <h3 class='text-center'>Capaian Realisasi Sub Seksi</h3>
+  <!-- <h3 class='text-center'>Capaian Realisasi Sub Seksi</h3> -->
   <form action="" method="POST">
       <label">Pilih Seksi : </label>
       <select class="form-control"  id="seksi" name="seksi" required>
@@ -44,7 +44,7 @@ include '../link.php';
       </form>
 
 <?php 
-// simpanProcess
+// TampilkanProcess
 if(isset($_POST['pilih'])){
     $kd_seksi=$_POST['seksi'];
     $query1="SELECT * FROM seksi WHERE kd_seksi='$kd_seksi'";
@@ -65,6 +65,9 @@ if(isset($_POST['pilih'])){
   </div>
 
   <div class="card-body text-primary table-responsive">
+
+  <a href="dataExcel?kd_seksi=<?php echo $kd_seksi; ?>&kd_subseksi=<?php echo $kd_subseksi;?>" class="btn btn-info mb-1" role="button">Export to Excel</a>
+
     <table class="table table-striped table-bordered table-hover table-responsive-justify ">
     <thead class="thead-dark text-center">
         <tr>

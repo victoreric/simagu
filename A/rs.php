@@ -13,10 +13,9 @@ include '../link.php';
 
 <div class="container-fluid">
 
-    <h3 class='text-center'>Capaian Realisasi Seksi</h3>
-
+    <!-- <h5 class='text-center'>Capaian Realisasi Seksi</h5> -->
     <form action="" method="POST">
-    <label for="kd_seksi">Pilih Seksi :</label>
+    <label for="kd_seksi">Pilih Seksi untuk melihat lebih detail :</label>
     <select class="form-control" name="kd_seksi" id="kd_seksi" required>
     <option value="">--Pilih Seksi--</option>
         <?php
