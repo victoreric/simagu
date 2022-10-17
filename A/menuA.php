@@ -162,8 +162,8 @@ if($level=='1'){
                         <div class="bg-white py-2 collapse-inner rounded">
                             <!-- <h6 class="collapse-header">Statistik kegiatan:</h6> -->
                             <!-- <a class="collapse-item" href="#">Jemaat</a> -->
-                            <a class="collapse-item" href="grafik">Seksi</a>
-                            <a class="collapse-item" href="grafik2">Sub Seksi</a>
+                            <a class="collapse-item" href="grafikS">Seksi</a>
+                            <a class="collapse-item" href="grafikSS">Sub Seksi</a>
                             <!-- <a class="collapse-item" href="rk">Kegiatan</a> -->
                         </div>
                     </div>

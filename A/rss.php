@@ -18,7 +18,10 @@ include '../link.php';
       <select class="form-control"  id="seksi" name="seksi" required>
           <option value=""> --- Silahkan Pilih Seksi ---</option>
               <?php
-              $query = mysqli_query($conn, "SELECT * FROM seksi ORDER BY kd_seksi");
+              $query = mysqli_query($conn, "SELECT DISTINCT kegiatan.kd_seksi, seksi.kd_seksi, seksi.nama_seksi
+              FROM kegiatan
+              INNER JOIN seksi ON seksi.kd_seksi=kegiatan.kd_seksi");
+              
               while ($row = mysqli_fetch_array($query)) {
               ?>
           <option value="<?php echo $row['kd_seksi']; ?>"> <?php echo $row['nama_seksi']; ?> </option>
@@ -26,7 +29,7 @@ include '../link.php';
       </select>
 
       <label for="subseksi" class="mt-3">Pilih Sub Seksi :</label>
-      <select class="form-control" id="subseksi" name="subseksi" required>
+      <select class="form-control" id="subseksi" name="subseksi" required/>
           <option value="">--- Silahkan Pilih Sub Seksi ---</option>
           <?php
           $query = mysqli_query($conn, "SELECT *, seksi.kd_seksi, seksi.nama_seksi
@@ -41,7 +44,14 @@ include '../link.php';
       </select>
 
       <button type="submit" class="btn btn-primary mt-2 mb-5" name='pilih'>PILIH</button>
+
       </form>
+    <!-- cek -->
+   
+
+
+
+      <!-- endCek  -->
 
 <?php 
 // TampilkanProcess
@@ -51,10 +61,20 @@ if(isset($_POST['pilih'])){
     $sql1=mysqli_query($conn,$query1);
     $hasil1=mysqli_fetch_array($sql1);
 
+  
     $kd_subseksi=$_POST['subseksi']; 
     $query="SELECT * FROM subseksi WHERE kd_subseksi='$kd_subseksi'";
     $sql=mysqli_query($conn,$query);
     $hasil=mysqli_fetch_array($sql);
+
+   
+    // cek error
+    $queryError="SELECT kd_subseksi FROM kegiatan WHERE kd_subseksi='$kd_subseksi'";
+    $sqlError=mysqli_query($conn,$queryError);
+    $cekError=mysqli_num_rows($sqlError);
+    if($cekError==0){
+      echo "Belum ada data";
+    } else{
 ?>
 
 <div class="card border-primary mb-3">
@@ -145,7 +165,7 @@ if(isset($_POST['pilih'])){
   </div>
 </div>
 
-<?php }
+<?php } }
 ?>
 
 </div>

@@ -19,7 +19,9 @@ include '../link.php';
     <select class="form-control" name="kd_seksi" id="kd_seksi" required>
     <option value="">--Pilih Seksi--</option>
         <?php
-            $query="SELECT * FROM seksi ORDER BY kd_seksi";
+            $query="SELECT DISTINCT kegiatan.kd_seksi, seksi.kd_seksi, seksi.nama_seksi 
+            FROM kegiatan 
+            INNER JOIN seksi ON seksi.kd_seksi=kegiatan.kd_seksi";
             $sql=mysqli_query($conn,$query);
             while($data=mysqli_fetch_array($sql)){
         ?>
@@ -38,6 +40,14 @@ if(isset($_POST['pilih'])){
     $query="SELECT * FROM seksi WHERE kd_seksi='$kd_seksi'";
     $sql=mysqli_query($conn,$query);
     $hasil=mysqli_fetch_array($sql);
+
+    $sqlError="SELECT kd_seksi FROM kegiatan WHERE kd_seksi='$kd_seksi'";
+    $sqlError=mysqli_query($conn,$sqlError);
+    $cekError=mysqli_num_rows($sqlError);
+    if($cekError==0){
+      echo "Belum ada data";
+    } else {
+
 ?>
 
 <div class="card border-primary mb-3">
@@ -73,9 +83,10 @@ if(isset($_POST['pilih'])){
     // mendapatkan nama subseksi
     $query="SELECT * FROM subseksi WHERE kd_seksi='$kd_seksi'";
     $sql=mysqli_query($conn,$query);
+    $cekSub=mysqli_num_rows($sql);
     while($hasil=mysqli_fetch_array($sql)){
     $kdSubSeksi=$hasil['kd_subseksi'];
-
+    
     ?>
     <tbody class="text-center">
     <tr>
@@ -164,7 +175,7 @@ if(isset($_POST['pilih'])){
   </div>
 </div>
 
-<?php } ?>
+<?php } }?>
 </div>
 
 <?php
