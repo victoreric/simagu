@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Victor EP">
-    <title>e-Monev</title>
+    <title>Sistem Manajemen Gudang - FaTek</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -19,7 +19,7 @@
 <body background="vendor/img/butterfly-bg.jpg">
 <!-- login Form -->
 <?php
-    session_start();
+    session_start();    
     if(isset($_SESSION['nama'])){
     if($_SESSION['level']=='1' && $_SESSION['active']=='Y'){
         header('location:A');
@@ -44,17 +44,18 @@
             <div class="row">
                 <!-- <div class="col-lg-6 d-none d-lg-block bg-login-hrd_vic"> -->
                 <div class="col-lg-6">
-                <img src="assets/img/logoGPM.png" alt="login" class="col-lg-12 d-none d-lg-block">    
+                <img src="img/banner_simagu.jpg" alt="login" class="col-lg-12 d-none d-lg-block">    
                 </div>
          
     <div class="col-lg-6">
         <div class="p-2">
             <div class="text-center">
-                <!-- <h1 class="h4 text-gray-900 mt-2 mb-0"> title</h1> -->
-                <span class="h1">e- </span> <img src="assets/img/logo_monev.png" alt="logo" class="logo">
-                <img src="assets/img/logoGPM.png" width="85px"> 
-                 
+                <!-- <h1 class="h4 text-gray-900 mt-2 mb-0"> SIMAGU</h1> -->
+                <span class="h1"></span> <img src="img/unpattilogo.png" alt="logo" class="logo" width='150' height="150">
+                <h1 class="h4 text-gray-900 mt-2 mb-0"> Sistem Manajemen Gudang <br> Fakultas Teknik Unpatti</h1>
+                <!-- <img src="img/" width="85px">  -->
             </div>
+            <br>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="form-group">
                     <input type="text" name='username' class="form-control form-control-user" pattern="[A-Za-z0-9]{}" placeholder="Masukan Username">
@@ -100,7 +101,7 @@
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">e-Monev</h4>
+                            <h4 class="modal-title">Sistem manajemen Gudang</h4>
                         </div>
                         <!-- Modal body -->
                         <div class="modal-body">

@@ -17,9 +17,9 @@ if($level=='1'){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Aplikasi e-Monev GPM">
+        <meta name="description" content="Simagu v.1">
         <meta name="author" content="Victor Pattiradjawane">
-        <title>e-Monev GPM</title>
+        <title>Sistem Manajemen Gudang</title>
 
         <!-- Custom fonts for this template-->
         <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -75,9 +75,9 @@ if($level=='1'){
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index">
                     <div class="sidebar-brand-icon">
                         <!-- <i class="fas fa-laugh-wink"></i> -->
-                        <img src="../assets/img/LogoGPMkecil.png" width="70px" alt="">
+                        <img src="../assets/img/unpattilogo.png" width="70px" alt="">
                     </div>
-                    <div class="sidebar-brand-text mx-3">Gereja Protestan Maluku<sup></sup></div>
+                    <div class="sidebar-brand-text mx-3">Fakultas Teknik Unpatti<sup></sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -90,61 +90,25 @@ if($level=='1'){
                         <span>Dashboard</span></a>
                 </li>
 
-                <!-- Divider -->
                 <hr class="sidebar-divider">
 
-                <!-- Heading -->
-                <!-- <div class="sidebar-heading">
-                    Statistik
+                 <!-- Heading -->
+                 <!-- <div class="sidebar-heading">
+                    Laporan
                 </div> -->
                 <!-- Nav Item - statistik Collapse Menu -->
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Statistik</span>
+                        <span>Laporan</span>
                     </a>
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Statistik kegiatan:</h6>
-                            <a class="collapse-item" href="">Sub menu 1</a>
-                            <a class="collapse-item" href="">Sub menu 2</a>
-                            <a class="collapse-item" href="">Sub menu 3</a>
-                        </div>
-                    </div>
-                </li> -->
-
-                <!-- Divider -->
-                <!-- <hr class="sidebar-divider"> -->
-
-                <!-- Heading -->
-                <!-- <div class="sidebar-heading">
-                    Kegiatan
-                </div> -->
-                <!-- Nav Item - statistik Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="k" aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-edit fa-chart-area"></i>
-                        <span>Kegiatan</span>
-                    </a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRekapitulasi"
-                        aria-expanded="true" aria-controls="collapseOne">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Rekapitulasi</span>
-                    </a>
-                    <div id="collapseRekapitulasi" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Statistik kegiatan:</h6> -->
-                            <!-- <a class="collapse-item" href="#">Jemaat</a> -->
-                            <a class="collapse-item" href="rs">Seksi</a>
-                            <a class="collapse-item" href="rss">Sub Seksi</a>
-                            <!-- <a class="collapse-item" href="rk">Kegiatan</a> -->
+                            <!-- <h6 class="collapse-header">Laporan berdasarkan:</h6> -->
+                            <a class="collapse-item" href="SBA">Stok Barang Terakhir</a>
+                            <!-- <a class="collapse-item" href="SBT">Stok Barang Per Tanggal</a> -->
+                            <a class="collapse-item" href="SBB">Stok Barang Per Bulan</a>
                         </div>
                     </div>
                 </li>
@@ -152,30 +116,23 @@ if($level=='1'){
                  <!-- Divider -->
                  <hr class="sidebar-divider">
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGrafik"
+                 <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseOne">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Grafik</span>
+                        <span>Pencatatan</span>
                     </a>
-                    <div id="collapseGrafik" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <!-- <h6 class="collapse-header">Statistik kegiatan:</h6> -->
-                            <!-- <a class="collapse-item" href="#">Jemaat</a> -->
-                            <a class="collapse-item" href="grafikS">Seksi</a>
-                            <a class="collapse-item" href="grafikSS">Sub Seksi</a>
-                            <!-- <a class="collapse-item" href="rk">Kegiatan</a> -->
+                            <!-- <h6 class="collapse-header">Input berdasarkan:</h6> -->
+                            <a class="collapse-item" href="BM">Barang Masuk</a>
+                            <a class="collapse-item" href="BK">Barang Keluar</a>
                         </div>
                     </div>
                 </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-
-
-
-
-
 
                 <!-- Heading -->
                 <!-- <div class="sidebar-heading">
@@ -191,10 +148,11 @@ if($level=='1'){
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <!-- <h6 class="collapse-header">Master data:</h6> -->
-                            <a class="collapse-item" href="mj">Jemaat</a>
-                            <a class="collapse-item" href="ms">Seksi</a>
-                            <a class="collapse-item" href="mss">Sub Seksi</a>
-                            <a class="collapse-item" href="mu.php">Manajemen User</a>
+                            <a class="collapse-item" href="kategori">Kategori</a>
+                            <a class="collapse-item" href="merek">Merek</a>
+                            <a class="collapse-item" href="barang">Barang</a>
+                            <a class="collapse-item" href="satuan">Satuan</a>
+                            <a class="collapse-item" href="mu">Manajemen User</a>
                         </div>
                     </div>
                 </li>
@@ -247,12 +205,12 @@ if($level=='1'){
                     <button id="sidebarToggleTop" class="btn btn-warning btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
-                    <h6 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 text-white">e-Monev </h6>
+                    <h6 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 text-white">SIMAGU </h6>
                     
                         <!-- Topbar Navbar -->
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <ul class='navbar-nav text-white'>
-                            <li class="nav-item no-arrow d-sm-none">E-Monev  <sup></sup></li>
+                            <li class="nav-item no-arrow d-sm-none">SIMAGU  <sup></sup></li>
                         </ul>
 
                         <ul class="navbar-nav ml-auto">
