@@ -126,29 +126,34 @@ function add($conn){
                 </div>
 
                 <div class="form-group">
-                    <label for="kode_barang">Nama Barang:</label>
-                    <select name="kode_barang" id='kode_barang' class="form-control" required/>
-                    <option value=''> --Pilih--  </option>
-                        <?php      
-                            $queri="SELECT * FROM barang";
-                            $sql=mysqli_query($conn,$queri);
-                            while($res=mysqli_fetch_array($sql)){
-                            echo " <option value='".$res['kode_barang'].  "' >".$res['nama_barang']. "</option> ";}
-                        ?>     
-                    </select>
-
-                </div>
-
-                <div class="form-group">
                     <label for="tanggal_bm">tanggal barang masuk :</label>
                     <input type="date" class="form-control" id="tanggal_bm" placeholder="" name="tanggal_bm" required/>
                 </div>
+
                 <div class="form-group">
-                    <label for="jumlah">Jumlah Barang :</label>
-                    <input type="text" class="form-control" id="jumlah" placeholder="" name="jumlah" required/>
+                    <label for="kode_barang">Nama Barang:</label>
+                    <select name="kode_barang" id='kode_barang' class="form-control" required/>
+                    <option value=''> --Pilih--  </option>
+                        <?php                            
+                            $queri=" SELECT *, satuan_barang.nama_satuan  
+                            FROM barang
+                            LEFT JOIN satuan_barang ON barang.id_satuan_barang=satuan_barang.id_satuan
+                            ";
+                            $sql=mysqli_query($conn,$queri);
+                            while($res=mysqli_fetch_array($sql)){
+                            echo " <option value='".$res['kode_barang'].  "' >".$res['nama_barang']. " -->(Dalam Satuan : " .$res['nama_satuan'] . "</option> ";}
+                        ?>     
+                    </select>
+                </div>
+
+                
+                <div class="form-group">
+                    <label for="jumlah">Jumlah Barang2 :</label>
+                    <input type="text" class="form-control" id="jumlah" placeholder="" name="jumlah" onkeypress="return Angkasaja(event)" required/>
                 </div>
             
                 <div class="form-group">
+                    
                     <label for="id_satuan">Satuan Barang :</label>
                     <select name="id_satuan" id='id_satuan' class="form-control" required/>
                     <option value=''> --Pilih--  </option>
@@ -262,7 +267,7 @@ $hasil=mysqli_fetch_array($sql);
 
          <div class='text-center'>
          <input class="btn btn-success btn-submit" type="submit" name="ubah" value="Ubah">
-         <a href="barang" ><input class="btn btn-success btn-danger" type="button" value="Batal"></a>
+         <a href="BM" ><input class="btn btn-success btn-danger" type="button" value="Batal"></a>
          </div>
       </form>
   </div>
@@ -310,7 +315,34 @@ if (isset($_POST['ubah']))
     });  
    </script> 
 
+ <!-- wajib jquery  -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <!-- js untuk bootstrap4  -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+        <!-- js untuk select2  -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#kode_barang").select2({
+                    theme: 'bootstrap4',
+                    placeholder: "Pilih"
+                });
+            });
+        </script>
 
+<!-- Script input hanya angka -->
+<script type="text/javascript">
+function Angkasaja(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57))
+return false;
+return true;
+}
+</script>
 
 <?php 
 include '../footer.php';
