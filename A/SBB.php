@@ -67,11 +67,11 @@ include '../link.php';
 			<tr class="bg-dark text-center text-white">
 				<th>No.</th>
                 <th> Nama Barang</th>
-                <th colspan="2"> Stok sisa bulan lalu</th>
-                <th colspan="2"> Volume masuk</th>
-                <th colspan="2"> Volume keluar</th>
-                <th colspan="2"> Sisa Barang (Stok Opname) </th>
-                <th></th>
+                <th > Stok sisa bulan lalu</th>
+                <th > Volume masuk</th>
+                <th > Volume keluar</th>
+                <th > Sisa Barang (Stok Opname) </th>
+                <!-- <th > Satuan Barang</th> -->
 			</tr>
 		</thead>
 		<?php
@@ -125,30 +125,29 @@ include '../link.php';
 				<td> <?php echo $no;  ?></td>
 				<td><?php echo $hasil['nama_barang']; ?></td>
 
-                <td><?php  echo $hasilBMLast['Jum_BM']-$hasilBKLast['Jum_BK'];?></td>
-                <td><?php echo $hasil['nama_satuan'] ?></td>
+                <td align="center"><?php  echo $hasilBMLast['Jum_BM']-$hasilBKLast['Jum_BK'] ." ". $hasil['nama_satuan']  ;?></td>
                 
-				<td><?php  
+                
+				<td align="center"><?php  
                     if($hasilBM['Jum_BM']!=0){
-                        echo $hasilBM['Jum_BM'];  
+                        echo $hasilBM['Jum_BM']." ". $hasil['nama_satuan'];  
                     }else{
                         echo "0";
                     } ?>
                 </td>
-                <td><?php echo $hasil['nama_satuan']?></td>
-                <td><?php 
+              
+                <td align="center"><?php 
                         if($hasilBK['Jum_BK']!=0){
-                            echo $hasilBK['Jum_BK'];  
+                            echo $hasilBK['Jum_BK']." ". $hasil['nama_satuan'];  
                         }else{
                             echo "0";
                         }
                     ?> 
                 </td>
-                <td><?php echo $hasil['nama_satuan'] ?></td>
-				<td><?php echo (($hasilBMLast['Jum_BM']-$hasilBKLast['Jum_BK'])+ $hasilBM['Jum_BM'])-$hasilBK['Jum_BK'] ?></td>
-                <td><?php echo $hasil['nama_satuan'] ?></td>
+               
+				<td align="center"><?php echo (($hasilBMLast['Jum_BM']-$hasilBKLast['Jum_BK'])+ $hasilBM['Jum_BM'])-$hasilBK['Jum_BK']." ". $hasil['nama_satuan'] ?></td>
+                <!-- <td><?php echo $hasil['nama_satuan'] ?></td> -->
 				
-				<td></td>
 			</tr>
             <?php }?>
 		

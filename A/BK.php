@@ -133,7 +133,7 @@ function add($conn){
 
                 <div class="form-group">
                     <label for="kode_barang">Nama Barang:</label>
-                    <select name="kode_barang" id='kode_barang' class="form-control" required/>
+                    <select name="kode_barang" id='kode_barang' class="form-control" onchange="autofill()" required/>
                     <option value=''> --Pilih--  </option>
                         <?php      
                             $queri="SELECT * FROM barang";
@@ -148,22 +148,27 @@ function add($conn){
                 </div>
 
                 <div class="form-group">
+                    <label for="id_satuan_barang">Satuan Barang :</label>
+                    <input type="text" class="form-control" id="id_satuan_barang"  name="id_satuan_barang" disabled/> 
+                </div>
+
+                <div class="form-group">
                     <label for="jumlah">Jumlah Barang :</label>
                     <input type="text" class="form-control" id="jumlah"  name="jumlah" required/> 
                 </div>
             
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="id_satuan">Satuan Barang :</label>
                     <select name="id_satuan" id='id_satuan' class="form-control" required/>
                     <option value=''> --Pilih--  </option>
                     <?php      
-                            $queri="SELECT * FROM satuan_barang";
-                            $sql=mysqli_query($conn,$queri);
-                            while($res=mysqli_fetch_array($sql)){
-                            echo " <option value='".$res['id_satuan']."'>".$res['nama_satuan']."</option>";}
+                            // $queri="SELECT * FROM satuan_barang";
+                            // $sql=mysqli_query($conn,$queri);
+                            // while($res=mysqli_fetch_array($sql)){
+                            // echo " <option value='".$res['id_satuan']."'>".$res['nama_satuan']."</option>";}
                         ?>     
                     </select>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label for="tujuan">Penerima :</label>
@@ -331,7 +336,7 @@ if (isset($_POST['ubah']))
     });  
    </script> 
 
-
+<!-- script untuk search dropdown -->
  <!-- wajib jquery  -->
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -350,7 +355,32 @@ if (isset($_POST['ubah']))
                 });
             });
         </script>
+<!-- END script untuk search dropdown -->
 
+<!-- Script untuk autofill menggunakan ajax -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function autofill(){
+        // alert("heloo");
+        var id=$("#kode_barang").val();
+        // alert(id);
+        $.ajax({
+            url: 'ajaxAutofill.php',
+            data:"id="+id,
+        }).success(function (data) {
+            // alert('berhasil');
+            var json = data,
+            obj = JSON.parse(json);
+            $('#nama_barang').val(obj.nama_barang);
+//             $('#kode_kategori').val(obj.kode_kategori);
+//             $('#kode_merek').val(obj.kode_merek);
+//             $('#detail_barang').val(obj.detail_barang);
+//             $('#stok_awal').val(obj.stok_awal);
+//             $('#id_satuan_barang').val(obj.id_satuan_barang);
+                });
+             
+    }
+    </script>
 
 
 <?php 
