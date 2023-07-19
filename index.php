@@ -20,11 +20,11 @@
 <!-- login Form -->
 <?php
     session_start();    
-    if(isset($_SESSION['nama'])){
-    if($_SESSION['level']=='1' && $_SESSION['active']=='Y'){
+    if(isset($_SESSION['nama_simagu'])){
+    if($_SESSION['level_simagu']=='1' && $_SESSION['active_simagu']=='Y'){
         header('location:A');
     }
-    else if($_SESSION['level']=='2' && $_SESSION['active']=='Y'){
+    else if($_SESSION['level_simagu']=='2' && $_SESSION['active_simagu']=='Y'){
         header('location:G');
     }
     else {
@@ -129,15 +129,15 @@
 
 	if ($cek==1 ) {
 		$hasil=mysqli_fetch_array($sql);
-		$_SESSION['nama']=$hasil['nama'];
-        $_SESSION['username']=$hasil['username'];
-		$_SESSION['level']=$hasil['level'];
-		$_SESSION['active']=$hasil['active'];
+		$_SESSION['nama_simagu']=$hasil['nama'];
+        $_SESSION['username_simagu']=$hasil['username'];
+		$_SESSION['level_simagu']=$hasil['level'];
+		$_SESSION['active_simagu']=$hasil['active'];
 
-		if($_SESSION['level']=='1' && $_SESSION['active']=='Y'){
+		if($_SESSION['level_simagu']=='1' && $_SESSION['active_simagu']=='Y'){
             header('location:A/index');
 		}
-		else if($_SESSION['level']=='2' && $_SESSION['active']=='Y'){
+		else if($_SESSION['level_simagu']=='2' && $_SESSION['active_simagu']=='Y'){
 		    header('location:G/index');
 		}
 		else {

@@ -3,11 +3,11 @@ include '../assets/fungsi.php';
 include '../assets/indohari.php';
 
 session_start();
-if(!isset($_SESSION['nama'])){
+if(!isset($_SESSION['nama_simagu'])){
    echo "<script> alert('Anda Belum Login'); window.location='../index'; </script>";
 } 
 
-$level=$_SESSION['level'];
+$level=$_SESSION['level_simagu'];
 if($level=='1'){
     ?>
     <!-- MenuForAdmin -->
@@ -235,7 +235,7 @@ if($level=='1'){
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-white-500"><?php echo $_SESSION['nama'];  ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-white-500"><?php echo $_SESSION['nama_simagu'];  ?></span>
                                    
                                     <img class='img-profile rounded-circle' src='../vendor/img/undraw_profile.svg'>
                                     
