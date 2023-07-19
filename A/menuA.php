@@ -82,7 +82,7 @@ if($level=='1'){
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index">
                     <div class="sidebar-brand-icon">
                         <!-- <i class="fas fa-laugh-wink"></i> -->
-                        <img src="../assets/img/unpattilogo.png" width="70px" alt="">
+                        <img src="../img/unpattilogo.png" width="70px" alt="">
                     </div>
                     <div class="sidebar-brand-text mx-3">Fakultas Teknik Unpatti<sup></sup></div>
                 </a>
@@ -157,8 +157,8 @@ if($level=='1'){
                             <!-- <h6 class="collapse-header">Master data:</h6> -->
                             <a class="collapse-item" href="kategori">Kategori</a>
                             <a class="collapse-item" href="merek">Merek</a>
-                            <a class="collapse-item" href="barang">Barang</a>
                             <a class="collapse-item" href="satuan">Satuan</a>
+                            <a class="collapse-item" href="barang">Barang</a>
                             <a class="collapse-item" href="mu">Manajemen User</a>
                         </div>
                     </div>

@@ -62,7 +62,7 @@ function view($conn){ ?>
         INNER JOIN kategori ON kategori.kode_kategori=barang.kode_kategori
         INNER JOIN merek ON merek.kode_merek=barang.kode_merek
         INNER JOIN satuan_barang ON satuan_barang.id_satuan=barang.id_satuan_barang
-        ORDER BY kode_barang DESC";
+        ORDER BY nama_barang ASC";
         
 		$sql = mysqli_query($conn,$query);
 		while($hasil=mysqli_fetch_array($sql)){

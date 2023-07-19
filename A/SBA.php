@@ -38,7 +38,7 @@ include '../link.php';?>
          FROM barang_masuk
          LEFT JOIN barang ON barang.kode_barang=barang_masuk.kode_barang 
          LEFT JOIN satuan_barang ON satuan_barang.id_satuan=barang_masuk.id_satuan_barang
-         ";
+         ORDER BY nama_barang ASC";
 		$sql = mysqli_query($conn,$query);
 		while($hasil=mysqli_fetch_array($sql)){
             $cek1=$hasil['kode_barang'];

@@ -136,7 +136,7 @@ function add($conn){
                     <select name="kode_barang" id='kode_barang' class="form-control" onchange="autofill()" required/>
                     <option value=''> --Pilih--  </option>
                         <?php      
-                            $queri="SELECT * FROM barang";
+                            $queri="SELECT * FROM barang ORDER BY nama_barang ASC";
                             $sql=mysqli_query($conn,$queri);
                             while($res=mysqli_fetch_array($sql))
                             {
@@ -148,9 +148,12 @@ function add($conn){
                 </div>
 
                 <div class="form-group">
-                    <label for="id_satuan_barang">Satuan Barang :</label>
-                    <input type="text" class="form-control" id="id_satuan_barang"  name="id_satuan_barang" disabled/> 
+                    <label for="kode_merek">Satuan Barang :</label>
+                    <input type="text" class="form-control" id="kode_merek"  name="kode_merek" disabled/> 
                 </div>
+                  <!-- menyembunyikan id_satuan barang -->
+                  <input type="text" class="form-control" id="id_satuan_barang" placeholder="" name="id_satuan_barang" hidden >
+                     <!-- End menyembunyikan id_satuan barang -->
 
                 <div class="form-group">
                     <label for="jumlah">Jumlah Barang :</label>
@@ -190,10 +193,10 @@ if(isset($_POST['simpan'])){
     $kode_barang = $_POST['kode_barang'];
     $tanggal_bk = $_POST['tanggal_bk'];
     $jumlah = $_POST['jumlah'];
-    $id_satuan = $_POST['id_satuan'];
+    $id_satuan_barang = $_POST['id_satuan_barang'];
     $tujuan = $_POST['tujuan'];
 
-    $query="INSERT INTO barang_keluar (nomor_surat, kode_barang, tanggal_bk, jumlah,id_satuan_barang, tujuan ) VALUES ('$nomor_surat','$kode_barang', '$tanggal_bk', '$jumlah', '$id_satuan','$tujuan')";
+    $query="INSERT INTO barang_keluar (nomor_surat, kode_barang, tanggal_bk, jumlah,id_satuan_barang, tujuan ) VALUES ('$nomor_surat','$kode_barang', '$tanggal_bk', '$jumlah', '$id_satuan_barang','$tujuan')";
     $sql=mysqli_query($conn,$query);
 
     if($sql){
@@ -336,26 +339,6 @@ if (isset($_POST['ubah']))
     });  
    </script> 
 
-<!-- script untuk search dropdown -->
- <!-- wajib jquery  -->
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <!-- js untuk bootstrap4  -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-            crossorigin="anonymous"></script>
-        <!-- js untuk select2  -->
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#kode_barang").select2({
-                    theme: 'bootstrap4',
-                    placeholder: "Pilih"
-                });
-            });
-        </script>
-<!-- END script untuk search dropdown -->
 
 <!-- Script untuk autofill menggunakan ajax -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -373,10 +356,10 @@ if (isset($_POST['ubah']))
             obj = JSON.parse(json);
             $('#nama_barang').val(obj.nama_barang);
 //             $('#kode_kategori').val(obj.kode_kategori);
-//             $('#kode_merek').val(obj.kode_merek);
+             $('#kode_merek').val(obj.kode_merek);
 //             $('#detail_barang').val(obj.detail_barang);
 //             $('#stok_awal').val(obj.stok_awal);
-//             $('#id_satuan_barang').val(obj.id_satuan_barang);
+            $('#id_satuan_barang').val(obj.id_satuan_barang);
                 });
              
     }
